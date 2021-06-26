@@ -15,12 +15,12 @@ public:
     }
     
     ListNode* helper(ListNode* l1, ListNode* l2, int carry_on) {
+        if (!l1 && !l2 && !carry_on) return NULL; // if both l1 and l2 is NULL;
         ListNode* new_node = new ListNode();
         if (!l1 && !l2 && carry_on) {
             new_node->val = 1;
             return new_node;
         }
-        if (!l1 && !l2 && !carry_on) return NULL; // if both l1 and l2 is NULL;
         if (!l1 && l2) {
             if (l2->val + carry_on >= 10) {
                 new_node->val = l2->val + carry_on - 10;
