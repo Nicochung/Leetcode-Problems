@@ -14,6 +14,8 @@ public:
                 ++i;
             }
         }
+        
+        // Find the index of the element in the original array
         vector<int>::iterator index1;
         index1 = find(nums.begin(), nums.end(), sorted_array[i]);
         int i1 = index1 - nums.begin();
