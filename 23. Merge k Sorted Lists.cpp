@@ -48,4 +48,40 @@ public:
             trav->next = l2;
         return head;
     }
+    // Try to implement independently
+     ListNode* mergeKLists2(vector<ListNode*>& lists) {
+        ListNode *head = nullptr, *trav = nullptr;
+        int minIndex = -1;
+        int minVal = INT_MAX;
+        // Decide the head out of all the lists
+        for (int i = 0; i < lists.size(); ++i) {
+            if (lists[i] && lists[i]->val < minVal) {
+                minIndex = i;
+                minVal = lists[i]->val;
+            }
+        }
+        if (minIndex != -1) {
+            head = lists[minIndex];
+            trav = head;
+            lists[minIndex] = lists[minIndex]->next;
+        }
+
+        // While all the lists[i] is still a valid pointer
+        while (minIndex != -1) {
+            minIndex = -1;
+            minVal = INT_MAX;
+            for (int i = 0; i < lists.size(); ++i) {
+                if (lists[i] && lists[i]->val < minVal) {
+                    minIndex = i;
+                    minVal = lists[i]->val;
+                }
+            }
+            if (minIndex != -1) {
+                trav->next = lists[minIndex];
+                trav = trav->next;
+                lists[minIndex] = lists[minIndex]->next;
+            }
+        }
+        return head;
+    }
 };
