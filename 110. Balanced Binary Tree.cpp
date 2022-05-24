@@ -32,3 +32,19 @@ public:
         
     }
 };
+
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if (root == nullptr) return true;
+        int left = isBalanced(root->left);
+        int right = isBalanced(root->right);
+        int diff = abs(height(root->left) - height(root->right)) <= 1;
+        return left && right && diff;
+    }
+    
+    int height(TreeNode* root) {
+        if (root == nullptr) return 0;
+        return 1 + max(height(root->left), height(root->right));
+    }
+};
